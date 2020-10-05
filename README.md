@@ -8,3 +8,4 @@
 ## ツール
 
 [成長計算ツール(一部)](tools/growth.js)
+[戦闘シミュレートツール](tools/battle-tool.js)
