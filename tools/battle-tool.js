@@ -53,17 +53,19 @@ function main() {
             continue;
         }
 
-        if (battleResult.playerHesitate) {
-            console.log(config.player.name + 'はすばやくみをかわした！');
+        if (config.enemy.counter) {
+            if (battleResult.playerHesitate) {
+                console.log(config.player.name + 'はすばやくみをかわした！');
 
-        } else {
-            console.log(config.player.name + 'は' + battleResult.playerDamage + 'のダメージを うけた');
-        }
+            } else {
+                console.log(config.player.name + 'は' + battleResult.playerDamage + 'のダメージを うけた');
+            }
 
-        if (battleResult.phase === 2) {
-            console.log(config.player.name + 'は たおれた');
-            console.log('');
-            continue;
+            if (battleResult.phase === 2) {
+                console.log(config.player.name + 'は たおれた');
+                console.log('');
+                continue;
+            }
         }
 
         if (battleResult.enemyHesitate2) {

@@ -50,55 +50,59 @@ exports.turn = function(config, randoms) {
     }
 
     // enemy attack
-    hit = config.enemy.hit - randoms[randomIndex++];
+    if (config.enemy.counter) {
+        hit = config.enemy.hit - randoms[randomIndex++];
 
-    if (hit > 0) {
-        critical = config.enemy.clt - randoms[randomIndex++];
-        damage = config.enemy.atc - config.player.def;
+        if (hit > 0) {
+            critical = config.enemy.clt - randoms[randomIndex++];
+            damage = config.enemy.atc - config.player.def;
 
-        if (critical > 0) {
-            damage *= 3;
+            if (critical > 0) {
+                damage *= 3;
+            }
+
+            result.playerDamage = damage;
+            playerHp -= damage;
+
+            if (playerHp <= 0) {
+                result.phase = 2;
+                result.winner = 'enemy';
+                result.randomIndex = randomIndex;
+
+                return result;
+            }
+
+        } else {
+            result.playerHesitate = true;
         }
-
-        result.playerDamage = damage;
-        playerHp -= damage;
-
-        if (playerHp <= 0) {
-            result.phase = 2;
-            result.winner = 'enemy';
-            result.randomIndex = randomIndex;
-
-            return result;
-        }
-
-    } else {
-        result.playerHesitate = true;
     }
 
     // player re-attack
-    hit = config.player.hit - randoms[randomIndex++];
+    if (config.player.spd - config.enemy.spd >= 3) {
+        hit = config.player.hit - randoms[randomIndex++];
 
-    if (hit > 0) {
-        critical = config.player.clt - randoms[randomIndex++];
-        damage = config.player.atc - config.enemy.def;
+        if (hit > 0) {
+            critical = config.player.clt - randoms[randomIndex++];
+            damage = config.player.atc - config.enemy.def;
 
-        if (critical > 0) {
-            damage *= 3;
+            if (critical > 0) {
+                damage *= 3;
+            }
+
+            result.enemyDamage2 = damage;
+            enemyHp -= damage;
+
+            if (enemyHp <= 0) {
+                result.phase = 3;
+                result.winner = 'player';
+                result.randomIndex = randomIndex;
+
+                return result;
+            }
+
+        } else {
+            result.enemyHesitate2 = true;
         }
-
-        result.enemyDamage2 = damage;
-        enemyHp -= damage;
-
-        if (enemyHp <= 0) {
-            result.phase = 3;
-            result.winner = 'player';
-            result.randomIndex = randomIndex;
-
-            return result;
-        }
-
-    } else {
-        result.enemyHesitate2 = true;
     }
 
     result.randomIndex = randomIndex;

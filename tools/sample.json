@@ -15,6 +15,7 @@
         "def": 13,
         "atc": 13,
         "clt": 0,
-        "spd": 0
+        "spd": 0,
+        "counter": true
     }
 }
