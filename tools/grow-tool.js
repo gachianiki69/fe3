@@ -4,9 +4,6 @@ const random = require('./random.js');
 const grow = require('./grow.js');
 
 function main() {
-    const CONSUMPTION = 2;
-    const RANDOM_LENGTH = CONSUMPTION + 8;
-
     for (const name of grow.names()) {
         let labelString = name;
         let growth = grow.getGrowth(name);
@@ -23,10 +20,9 @@ function main() {
         console.log(labelString);
 
         for (let i = 0; i < random.length(); i++) {
-            let randoms = random.get(i, RANDOM_LENGTH);
+            let randoms = random.get(i, growth.length);
             let levelUpResult = grow.levelUp(name, randoms);
-
-            let outputString = '#' + i + ' 命中' + randoms[0] + ' 必殺' + randoms[1];
+            let outputString = '#' + i;
 
             for (let j = 0; j < levelUpResult.length; j++) {
                 if (levelUpResult[j].result > 0) {
