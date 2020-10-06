@@ -4,6 +4,7 @@
 ## データ
 
 * [敵パラメータ(一部)](data/enemy.md)
+* [LVUPパターン(一部)](data/lvup.md)
 
 ## ツール
 
