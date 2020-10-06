@@ -73,6 +73,8 @@ function getGrowth(name) {
     return GROWTH[name];
 }
 
+exports.getGrowth = getGrowth;
+
 exports.levelUp = function(name, randoms) {
     let result = [];
     let growth = getGrowth(name);
@@ -87,4 +89,8 @@ exports.levelUp = function(name, randoms) {
     }
 
     return result;
+}
+
+exports.names = function() {
+    return Object.keys(GROWTH);
 }
