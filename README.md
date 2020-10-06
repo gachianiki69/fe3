@@ -7,7 +7,7 @@
 
 ## ツール
 
-* [成長計算ツール(一部)](tools/growth.js)
+* [成長計算ツール(一部)](tools/grow-tool.js)
 * [戦闘シミュレートツール](tools/battle-tool.js)
 
 ## プレイ記録
